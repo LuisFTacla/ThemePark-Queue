@@ -8,7 +8,7 @@ st.set_page_config(page_title="Portfolio - Beto Carrero World", layout="wide")
 @st.cache_data
 def load_data():
     # Carrega o arquivo unificado
-    df = pd.read_csv('df_completo_2023_2024.csv')
+    df = pd.read_csv('consolidado-bcw.csv')
     # Converte para datetime e extrai apenas a hora cheia
     df['hora_cheia'] = pd.to_datetime(df['hora_local']).dt.hour
     return df
