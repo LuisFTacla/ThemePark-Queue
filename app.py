@@ -4,6 +4,7 @@ import numpy as np
 import plotly.graph_objects as go
 import plotly.express as px
 import os
+import glob
 
 # --- CONFIGURAÇÃO DA PÁGINA ---
 st.set_page_config(page_title="Dashboard Beto Carrero", layout="wide")
@@ -29,9 +30,13 @@ st.markdown("""
 # --- CARREGAMENTO DE DADOS ---
 @st.cache_data
 def load_and_process_data():
-    if not os.path.exists('consolidado-bcw.csv'):
+    arquivos = glob.glob('consolidado-bcw-*.csv')
+    if not arquivos:
         return None, None
-    df = pd.read_csv('consolidado-bcw.csv')
+    
+    lista_dfs = [pd.read_csv(f) for f in arquivos]
+    df = pd.concat(lista_dfs, ignore_index=True)
+    df['data_local'] = pd.to_datetime(df['data_local'], format='mixed')
     df['hora_cheia'] = pd.to_datetime(df['hora_local']).dt.hour
     
     espera_media = df[df['wait_time'] > 0].groupby('data_local')['wait_time'].mean().reset_index()
@@ -167,7 +172,7 @@ if df_bruto is not None:
                 cores[pos] = '#ef233c' # Vermelho destaque
 
         fig_bar = px.bar(
-            media_h, 
+            media_h,
             x='hora_cheia', 
             y='wait_time', 
             template="plotly_white",
@@ -188,7 +193,7 @@ if df_bruto is not None:
         
         if "ano_sel" not in st.session_state:
             st.session_state.ano_sel = 2024
-        col1, col2 = st.columns([1, 1])
+        col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
         with col1:
             if st.button("2023", use_container_width=True, type="primary" if st.session_state.ano_sel == 2023 else "secondary"):
                 st.session_state.ano_sel = 2023
@@ -197,6 +202,15 @@ if df_bruto is not None:
             if st.button("2024", use_container_width=True, type="primary" if st.session_state.ano_sel == 2024 else "secondary"):
                 st.session_state.ano_sel = 2024
                 st.rerun()
+        with col3:
+            if st.button("2025", use_container_width=True, type="primary" if st.session_state.ano_sel == 2025 else "secondary"):
+                st.session_state.ano_sel = 2025
+                st.rerun()
+        with col4:
+            if st.button("2026", use_container_width=True, type="primary" if st.session_state.ano_sel == 2026 else "secondary"):
+                st.session_state.ano_sel = 2026
+                st.rerun()
+        
         
         st.plotly_chart(exibir_legenda_color_bar(), use_container_width=True, config={'displayModeBar': False})
 
