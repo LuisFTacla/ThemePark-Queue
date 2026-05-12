@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "theme-park-queue-data",
+  "private_key_id": "f2e1d4785d38aa5e2dafc4453d58b8a57ad37575",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDq9RgvItE/rQ7l\nvBmUhZs0stz2XyiD+yw9tbGeF5BhkS12dFrHFwvgHuf0MCUWeaEXW+qAG1PEA1qT\nHVKpCxe9xAw1IsphTLDbzThuWhZizMcQBKnERH9uZXE/mop+i0eHJPD6NRgtHEfU\n4ZEGGGEbuuhq0m0QqV/g7x9wCh+q3ZpxglFtL1/RxevRNFfgLAqE6OvStMQ3DWxw\nFLevYT21PDOKhLmpMi8Fx5So2VYVYMffEeEUhvzMT2hyqbmfblJWQtU1U5omQUJd\nfCIsg4nidlSO9C0hvFy2aiU24eWEPLFU2pKjhbk1cNpf+ELOiO6b4p3bFemyKTwn\nHTiUGRYbAgMBAAECggEATrF0PiVNLCSMPsm3T5VIHGhjtWi9qyau9KQsLyT5SJRV\nQ71IwjGn2pK/YXvWkCaAm9A/RFTiw13UMj2598AtXXOSGyHh4qDLA3NCmUM3CDRJ\n38WQDppai+ESAxmBlUyU0mC/DS5HQKSeMmCyL/ZuX9lECrMbsF7qK+4q+12IqbMW\nuNhq31ug4Kgpzp9IBN383/L5Y0M3o/QBd1H6fkgtmh+NvMxjmOsdm0+UmOc4fTcu\nZu7e1hmUYcAUAm/C6e1yCoKVcygyww9g0kPUTs7/vjHuYxdh88w2WLY/MZY1HtmG\n13a6zsdp5sxIQRGS6xHk7C6V/w3F3g5k7YP3qFSsIQKBgQD7AU8Kylt/OQSYvgsr\nNCBfqpoAGgXyJiQ0gsloiNqXWurysO9cOQUdFU2ewLVDIs6cxxeeCCjlal/A0rP9\nCeXXbr0PNrRElp74cSZ2s21yIX1kOQgP1yAlNSjUPLGWY8fDcKuiBgQBXgT5tuYs\ngzy8J8miElfZI7tSiqeTvN1scwKBgQDvogi7qfWgfoZf/PciIIjEL2z42d5NHnem\n9x7sJyvYFGuFDOASngaxb5CEg8W6fcJvCks6bgcOsJvHOafn/zfF/Y7e9Mh1XNon\nwVB8HULNQsK5Fp5za214aN9xTwgKZZYyA6efxiM3tfJihbvx/eSza67Hg+8nlLNv\nYqXeLAStuQKBgBeWvOXntIeVRTBRk90gjfZPox9lUq+6E+b3b5QqYFifC7t5E1WY\najmceen0dFR13fLv5vFMFQPSZmNJqe6a0oXXe18FphVYDmKMx6+aFywFp7IWhgJv\nFi9I+qhPd+UJRYnBee/FHvU977vEC4edYcTQ/GsFzEm0yPLt4ufIdQqvAoGAM2JW\nZw9RyUF4RPr0b0/0o8TbpBzrqzO+SoIxEkhwAVyXlacmITfbjY6zuYacDppK6A6Y\nBQZ04vSB4t19IKU8a2ssiKiKl4f6i43LWWHY4jTPlmrAPVWq2qf6Scy9l6Ui6MSZ\n3Avbn2WXfQLaQ1DDCqorh0LGNIGRXHAVyyc7NZkCgYEArWX6y11q4ilmRpZKRUk5\nM7XQ7MIjFM8WMtslLtq8XgTT20dZk6VXoZXxrGFDNn31v/Hd57yVUK87nBVwZlxK\ni+aeAtqX9b8C2u2U6mjJXIm1I3rN98gKk9hr3Q+QXI8J7uZzouIYoJm11ydFhO57\nSXxrUBOQSM6iY5JZ9GIJUH0=\n-----END PRIVATE KEY-----\n",
+  "client_email": "lambda-bigquery-collector@theme-park-queue-data.iam.gserviceaccount.com",
+  "client_id": "112775303754275535350",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/lambda-bigquery-collector%40theme-park-queue-data.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
