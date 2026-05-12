@@ -8,13 +8,28 @@ import plotly.graph_objects as go
 import plotly.express as px
 from google.cloud import bigquery
 import os
+from google.oauth2 import service_account
 
 # --- CONFIGURAÇÃO DA PÁGINA ---
 st.set_page_config(page_title="Theme Park Analytics", layout="wide")
 
 # Autenticação
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "theme-park-queue-data-f2e1d4785d38.json"
-client = bigquery.Client()
+# Função para autenticação híbrida
+def get_bq_client():
+    # 1. Tenta carregar das Secrets do Streamlit (Produção)
+    if "gcp_service_account" in st.secrets:
+        info = st.secrets["gcp_service_account"]
+        credentials = service_account.Credentials.from_service_account_info(info)
+        return bigquery.Client(credentials=credentials, project=info["project_id"])
+    
+    # 2. Se não achar as Secrets, usa o arquivo local (Desenvolvimento)
+    else:
+        # Aqui ele vai procurar o arquivo que está na sua pasta
+        os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "theme-park-queue-data-f2e1d4785d38.json"
+        return bigquery.Client()
+
+# Agora o client é criado automaticamente conforme o ambiente
+client = get_bq_client()
 
 # CSS Customizado
 st.markdown("""
