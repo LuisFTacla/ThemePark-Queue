@@ -16,13 +16,27 @@ st.set_page_config(page_title="Theme Park Analytics", layout="wide")
 # Autenticação
 # Função para autenticação híbrida
 def get_bq_client():
-    # 1. Tenta carregar das Secrets do Streamlit (Produção)
     if "gcp_service_account" in st.secrets:
+        # 1. Transforma em dict comum
         info = dict(st.secrets["gcp_service_account"])
-        info["private_key"] = info["private_key"].replace("\\n", "\n")
+        
+        # 2. Limpeza profunda da private_key
+        key = info["private_key"]
+        
+        # Remove espaços em branco no início e fim
+        key = key.strip()
+        
+        # Resolve o problema do \n de texto vs \n de quebra de linha
+        key = key.replace("\\n", "\n")
+        
+        # Garante que as aspas extras (caso existam) sejam removidas
+        if key.startswith('"') and key.endswith('"'):
+            key = key[1:-1]
+            
+        info["private_key"] = key
+        
         credentials = service_account.Credentials.from_service_account_info(info)
         return bigquery.Client(credentials=credentials, project=info["project_id"])
-    
     # 2. Se não achar as Secrets, usa o arquivo local (Desenvolvimento)
     else:
         # Aqui ele vai procurar o arquivo que está na sua pasta
