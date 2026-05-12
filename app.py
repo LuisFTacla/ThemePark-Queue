@@ -18,7 +18,7 @@ st.set_page_config(page_title="Theme Park Analytics", layout="wide")
 def get_bq_client():
     # 1. Tenta carregar das Secrets do Streamlit (Produção)
     if "gcp_service_account" in st.secrets:
-        info = st.secrets["gcp_service_account"]
+        info = dict(st.secrets["gcp_service_account"])
         info["private_key"] = info["private_key"].replace("\\n", "\n")
         credentials = service_account.Credentials.from_service_account_info(info)
         return bigquery.Client(credentials=credentials, project=info["project_id"])
