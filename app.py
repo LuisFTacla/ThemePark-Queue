@@ -3,13 +3,14 @@ import pandas as pd
 import numpy as np
 import requests
 import datetime
+import pytz
 from datetime import datetime, timezone
 import plotly.graph_objects as go
 import plotly.express as px
 from google.cloud import bigquery
 import os
 from google.oauth2 import service_account
-from streamlit_javascript import st_javascript  # Nova importação para ler tela
+from streamlit_javascript import st_javascript
 
 # --- CONFIGURAÇÃO DA PÁGINA ---
 st.set_page_config(page_title="Theme Park Analytics", layout="wide")
@@ -45,6 +46,25 @@ st.markdown("""
         rx: 6 !important;
         ry: 6 !important;
     }
+    
+    /* === BLOQUEIO DO TECLADO NO DROPDOWN === */
+    /* Desativa a digitação e esconde o cursor piscante no selectbox */
+    .stSelectbox input {
+        caret-color: transparent !important; /* Esconde o cursor de texto */
+    }
+    
+    /* Faz o campo de texto ignorar o foco direto que puxa o teclado, 
+       mas permite que o clique passe para a caixinha abrir as opções */
+    .stSelectbox div[role="combobox"] input {
+        inputmode: none !important; /* Diz ao navegador para não abrir o teclado */
+        pointer-events: none !important; /* Impede o foco direto no texto */
+    }
+    
+    /* Garante que a caixinha inteira continue clicável para abrir o menu */
+    .stSelectbox div[role="combobox"] {
+        cursor: pointer !important;
+    }
+    
     @media (max-width: 600px) {
         .main .block-container {
             padding: 0.5rem !important;
@@ -168,12 +188,10 @@ if "ano_sel" not in st.session_state:
     
 # --- TELA INICIAL COM DOCUMENTAÇÃO COMPLETA ---
 if st.session_state.park_id is None:
-    # Título Principal com estilo
     st.markdown("# 🎡 Theme Park Data Intelligence")
     st.caption("Desenvolvido por **Luis Fernando Melnek Tacla** | Versão 1.1 | 2026")
     st.markdown("---")
 
-    # 🌟 1. SELETOR DE PARQUES NO TOPO (Aparece primeiro em qualquer dispositivo)
     st.markdown("### 🚀 Iniciar Análise")
     df_parks = get_available_parks() 
     
@@ -189,10 +207,8 @@ if st.session_state.park_id is None:
             st.session_state.park_name = row['park_name']
             st.rerun()
             
-    st.markdown("---") # Linha divisória charmosa após o seletor
+    st.markdown("---")
 
-    # 📖 2. DOCUMENTAÇÃO DO PROJETO (Abaixo do seletor)
-    # Criamos o layout em colunas: Documentação na esquerda e Dicas rápidas na direita
     col_doc, col_action = st.columns([2.5, 1], gap="large")
 
     with col_doc:
@@ -373,7 +389,6 @@ if not df_calendario.empty:
         if largura_tela is None or largura_tela == 0:
             largura_tela = 1000 
 
-        import pytz
         tz_alvo = pytz.timezone(current_tz)
         hoje_local = datetime.now(tz_alvo).date()
         
