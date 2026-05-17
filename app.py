@@ -509,7 +509,7 @@ if not df_calendario.empty:
             )
             df_pivot_heat = df_pivot_heat.reindex(sorted(df_pivot_heat.columns), axis=1)
             df_pivot_heat = df_pivot_heat.reindex(sorted(df_pivot_heat.index), axis=0)
-            df_pivot_heat = df_pivot_heat.applymap(lambda x: None if pd.isna(x) or x <= 0 else x)
+            df_pivot_heat = df_pivot_heat.map(lambda x: None if pd.isna(x) or x <= 0 else x)
             
             # Decisão puramente em Python controlando qual gráfico construir
             if largura_tela > 600:
